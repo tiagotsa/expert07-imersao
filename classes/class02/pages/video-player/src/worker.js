@@ -15,7 +15,7 @@ const service = new Service({
 console.log('loading tf model')
 await service.loadModel()
 console.log('tf model loaded!')
-postMessage('READY')
+postMessage('ready')
 
 onmessage = async ({ data: video }) => {
    const blinked = await service.handBlinked(video)
