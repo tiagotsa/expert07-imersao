@@ -1,16 +1,15 @@
-import { knownGestures, gestureStrings } from "../util/gestures.js"
-
 export default class HandGestureService {
     #gestureEstimator
     #handPoseDetection
     #handsVersion
     #detector = null
-
-    constructor({ fingerpose, handPoseDetection, handsVersion }) {
+    #gestureStrings
+    constructor({ fingerpose, handPoseDetection, handsVersion, gestureStrings, knownGestures }) {
         this.#gestureEstimator = new fingerpose.GestureEstimator(knownGestures)
         this.#handPoseDetection = handPoseDetection
         this.#handsVersion = handsVersion
-
+        this.#gestureStrings = gestureStrings
+        
     }
 
     async estimate(keypoints3D) {
@@ -33,7 +32,7 @@ export default class HandGestureService {
             )
             const { x, y } = hand.keypoints.find(keypoint => keypoint.name === 'index_finger_tip')
             yield{ event: result.name, x, y}
-            console.log('detected', gestureStrings[result.name])
+            console.log('detected', this.#gestureStrings[result.name])
         }
     }
 
@@ -52,7 +51,7 @@ export default class HandGestureService {
     async initializeDetector() {
         if (this.detector) return this.detector
 
-        const detectorConfig = {
+            const detectorConfig = {
             runtime: 'mediapipe', // or 'tfjs',
             solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${this.#handsVersion}`,
             // full é o mais pesado e o mais preciso
