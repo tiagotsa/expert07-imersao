@@ -2,8 +2,7 @@
   "name": "webapp",
   "version": "0.0.1",
   "scripts": {
-    "start": "npx browser-sync -w",
-    "build": "echo 'No build step required'"
+    "start": "npx browser-sync -w"
   },
   "keywords": [],
   "author": "erickwendel",
