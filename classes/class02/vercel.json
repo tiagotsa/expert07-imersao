@@ -4,12 +4,19 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "test.html",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/$1",
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate"
+      }
     }
   ]
 }
