@@ -16,7 +16,8 @@ export default class Camera {
                 height: globalThis.screen.availHeight,
                 frameRate: {
                     ideal: 60
-                }
+                },
+                facingMode: "user"
             }
         }
 
@@ -27,6 +28,12 @@ export default class Camera {
         
         camera.video.height = 240
         camera.video.width = 320
+        camera.video.style.position = 'fixed'
+        camera.video.style.top = '0'
+        camera.video.style.right = '0'
+        camera.video.style.zIndex = '1000'
+        camera.video.style.transform = 'scaleX(-1)' // Espelhar a imagem
+        camera.video.style.border = '2px solid red' // Borda para debug
         document.body.append(camera.video)
 
         await new Promise((resolve) => {
