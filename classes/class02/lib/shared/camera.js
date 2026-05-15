@@ -12,12 +12,11 @@ export default class Camera {
         const videoConfig = {
             audio: false,
             video: {
-                width: 640,
-                height: 480,
+                width: globalThis.screen.availWidth,
+                height: globalThis.screen.availHeight,
                 frameRate: {
-                    ideal: 30
-                },
-                facingMode: "user"
+                    ideal: 60
+                }
             }
         }
 
@@ -25,19 +24,11 @@ export default class Camera {
         const camera = new Camera()
         camera.video.srcObject = stream
 
-        // Debug camera preview
-        camera.video.height = 120
-        camera.video.width = 160
-        camera.video.style.position = 'fixed'
-        camera.video.style.top = '0'
-        camera.video.style.right = '0'
-        camera.video.style.zIndex = '1000'
-        camera.video.style.transform = 'scaleX(-1)' // Mirror
-        camera.video.style.border = '1px solid white'
-        camera.video.style.borderRadius = '10px'
+        camera.video.height = 240
+        camera.video.width = 320
+        // Ocultamos o vídeo da webcam, mas ele continua processando os gestos
+        camera.video.style.display = 'none' 
         document.body.append(camera.video)
-
-        await new Promise((resolve) => {
             camera.video.onloadedmetadata = () => {
                 resolve(camera.video)
             }

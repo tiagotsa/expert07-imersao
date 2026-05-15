@@ -44,7 +44,7 @@ export default class HandGestureService {
     
     async estimateHands(video) {
         return this.#detector.estimateHands(video, {
-            flipHorizontal: true
+            flipHorizontal: false // O vídeo já foi espelhado no CSS
         })
     }
 
