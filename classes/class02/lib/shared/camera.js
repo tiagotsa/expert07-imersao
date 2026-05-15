@@ -12,10 +12,10 @@ export default class Camera {
         const videoConfig = {
             audio: false,
             video: {
-                width: globalThis.screen.availWidth,
-                height: globalThis.screen.availHeight,
+                width: 640,
+                height: 480,
                 frameRate: {
-                    ideal: 60
+                    ideal: 30
                 },
                 facingMode: "user"
             }
@@ -25,15 +25,16 @@ export default class Camera {
         const camera = new Camera()
         camera.video.srcObject = stream
 
-        
-        camera.video.height = 240
-        camera.video.width = 320
+        // Debug camera preview
+        camera.video.height = 120
+        camera.video.width = 160
         camera.video.style.position = 'fixed'
         camera.video.style.top = '0'
         camera.video.style.right = '0'
         camera.video.style.zIndex = '1000'
-        camera.video.style.transform = 'scaleX(-1)' // Espelhar a imagem
-        camera.video.style.border = '2px solid red' // Borda para debug
+        camera.video.style.transform = 'scaleX(-1)' // Mirror
+        camera.video.style.border = '1px solid white'
+        camera.video.style.borderRadius = '10px'
         document.body.append(camera.video)
 
         await new Promise((resolve) => {

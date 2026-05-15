@@ -18,6 +18,7 @@ export default class HandGestureController {
 
   }
   async init() {
+    await this.#service.initializeDetector()
     return this.#loop()
   }
 
@@ -65,7 +66,6 @@ export default class HandGestureController {
   }
 
   async #loop() {
-    await this.#service.initializeDetector()
     await this.#estimateHands()
     this.#view.loop(this.#loop.bind(this))
   }

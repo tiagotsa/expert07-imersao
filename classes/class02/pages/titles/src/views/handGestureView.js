@@ -3,12 +3,14 @@ export default class HandGestureView {
     #canvasContext = this.#handsCanvas.getContext('2d')
     #fingerLookupIndexes
     constructor({ fingerLookupIndexes }) {
-        this.#handsCanvas.width = globalThis.screen.availWidth
-        this.#handsCanvas.height = globalThis.screen.availHeight
+        this.#handsCanvas.width = window.innerWidth
+        this.#handsCanvas.height = window.innerHeight
         this.#fingerLookupIndexes = fingerLookupIndexes
     }
 
     clearCanvas() {
+        this.#handsCanvas.width = window.innerWidth
+        this.#handsCanvas.height = window.innerHeight
         this.#canvasContext.clearRect(0, 0, this.#handsCanvas.width, this.#handsCanvas.height)
     }
 
@@ -32,23 +34,28 @@ export default class HandGestureView {
         for (const { keypoints, handedness } of hands) {
             if (!keypoints) continue
 
-            this.#canvasContext.fillSytle = handedness === "Left" ? "rgb(44, 212, 103)" : "rgb(44, 212, 103)"
+            this.#canvasContext.fillStyle = handedness === "Left" ? "rgb(44, 212, 103)" : "rgb(44, 212, 103)"
             this.#canvasContext.strokeStyle = "white"
             this.#canvasContext.lineWidth = 8
             this.#canvasContext.lineJoin = "round"
 
-            this.#drawJoients(keypoints)
+            // Mapeia os pontos do vídeo para o tamanho da tela
+            const scaledKeypoints = keypoints.map(point => ({
+                ...point,
+                x: (point.x / 640) * window.innerWidth,
+                y: (point.y / 480) * window.innerHeight
+            }))
 
-            this.#drawFingersAndHoverElements(keypoints)
+            this.#drawJoints(scaledKeypoints)
+            this.#drawFingersAndHoverElements(scaledKeypoints)
         }
-
     }
-    #drawJoients(keypoints) {
+    #drawJoints(keypoints) {
         for (const { x, y } of keypoints) {
             this.#canvasContext.beginPath()
-            const newX = x - 2
-            const newY = y - 2
-            const radius = 3
+            const newX = x
+            const newY = y
+            const radius = 10 // Aumentado para visibilidade no mobile
             const startAngle = 0
             const endAngle = 2 * Math.PI
       
@@ -80,7 +87,7 @@ export default class HandGestureView {
     scrollPage(top) {
         scroll({
             top,
-            behavion: "smooth"
+            behavior: "smooth"
 
         })
     }

@@ -49,11 +49,11 @@ export default class HandGestureService {
     }
 
     async initializeDetector() {
-        if (this.detector) return this.detector
+        if (this.#detector) return this.#detector
 
             const detectorConfig = {
             runtime: 'mediapipe', // or 'tfjs',
-            solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${this.#handsVersion}`,
+            solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${this.#handsVersion || '0.4.1646424915'}`,
             // full é o mais pesado e o mais preciso
             modelType: 'lite',
             maxHands: 2,
