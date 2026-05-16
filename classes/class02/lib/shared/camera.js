@@ -24,12 +24,12 @@ export default class Camera {
         const camera = new Camera()
         camera.video.srcObject = stream
 
+        
         camera.video.height = 240
         camera.video.width = 320
-        // Ocultamos o vídeo da webcam, mas ele continua processando os gestos
-        camera.video.style.display = 'none' 
         document.body.append(camera.video)
-            camera.video.onloadedmetadata = () => {
+
+        await new Promise((resolve) => {
                 resolve(camera.video)
             }
         })

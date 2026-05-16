@@ -44,16 +44,16 @@ export default class HandGestureService {
     
     async estimateHands(video) {
         return this.#detector.estimateHands(video, {
-            flipHorizontal: false // O vídeo já foi espelhado no CSS
+            flipHorizontal: true
         })
     }
 
     async initializeDetector() {
-        if (this.#detector) return this.#detector
+        if (this.detector) return this.detector
 
             const detectorConfig = {
             runtime: 'mediapipe', // or 'tfjs',
-            solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${this.#handsVersion || '0.4.1646424915'}`,
+            solutionPath: `https://cdn.jsdelivr.net/npm/@mediapipe/hands@${this.#handsVersion}`,
             // full é o mais pesado e o mais preciso
             modelType: 'lite',
             maxHands: 2,
