@@ -30,6 +30,7 @@ export default class Camera {
         document.body.append(camera.video)
 
         await new Promise((resolve) => {
+            camera.video.onloadedmetadata = () => {
                 resolve(camera.video)
             }
         })
