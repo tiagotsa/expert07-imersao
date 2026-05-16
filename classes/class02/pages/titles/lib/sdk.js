@@ -729,6 +729,14 @@ let slide_index = 0
 
 const SmoothScroll = (id) => {
   let element = document.getElementById(id)
+  if (!element && id === "movies") {
+    element = document.getElementById("trending")
+  }
+  if (!element && id === "home") {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+    return
+  }
+  if (!element) return
   element.scrollIntoView({ behavior: "smooth", block: "center" })
 }
 
