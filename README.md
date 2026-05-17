@@ -2,6 +2,8 @@
 
 ## Visão Geral do Projeto
 
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/tiagotsa/expert07-imersao/blob/main/LICENSE)
+
 O projeto **JSExpertMax Gesture Controller** é uma demonstração avançada de como a visão computacional e o Machine Learning podem ser aplicados em aplicações web para criar experiências de usuário inovadoras e acessíveis. Desenvolvido como parte da Semana Javascript Expert 7.0, este aplicativo explora o controle de navegação de uma lista de títulos através de gestos de mão.
 
 ## Regras de Negócio e Funcionalidades
