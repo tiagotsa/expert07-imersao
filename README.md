@@ -1,53 +1,82 @@
-# JSExpertMax Gesture Controller - Semana JS Expert 7.0
+# JSExpertMax Gesture Controller
 
-Seja bem vindo(a) à sétima Semana Javascript Expert. Este é o código inicial para iniciar nossa jornada.
+## Visão Geral do Projeto
 
-Marque esse projeto com uma estrela 🌟
+O projeto **JSExpertMax Gesture Controller** é uma demonstração avançada de como a visão computacional e o Machine Learning podem ser aplicados em aplicações web para criar experiências de usuário inovadoras e acessíveis. Desenvolvido como parte da Semana Javascript Expert 7.0, este aplicativo explora o controle de navegação de uma lista de títulos através de gestos de mão.
 
-## Preview
-<img width=100% src="./initial-template/assets/demo-template-lg.gif">
+## Regras de Negócio e Funcionalidades
 
-## Pre-reqs
-- Este projeto foi criado usando Node.js v19.6
-- O ideal é que você use o projeto em ambiente Unix (Linux). Se você estiver no Windows, é recomendado que use o [Windows Subsystem Linux](https://www.omgubuntu.co.uk/how-to-install-wsl2-on-windows-10) pois nas aulas são mostrados comandos Linux que possam não existir no Windows.
+### 1. Controle de Navegação por Gestos de Mão (Lista de Títulos)
 
-## Running
+Esta seção do aplicativo permite aos usuários interagir com uma lista de conteúdo (títulos) utilizando gestos de mão capturados pela webcam. As principais regras de negócio e funcionalidades incluem:
 
-- Execute `npm ci` na pasta que contém o arquivo `package.json` para restaurar os pacotes
-- Execute `npm start` e em seguida vá para o seu navegador em [http://localhost:3000](http://localhost:3000) para visualizar a página acima
+*   **Reconhecimento de Gestos:** O sistema é capaz de identificar três gestos distintos:
+    *   **Scroll Down:** Detectado quando a palma da mão está fechada (punho cerrado) ✊.
+    *   **Scroll Up:** Detectado quando a palma da mão está aberta 🖐.
+    *   **Clique:** Acionado por um gesto de pinça 🤏🏻, simulando um clique no elemento da interface mais próximo às coordenadas do gesto.
+*   **Interação Não Intrusiva:** As mãos do usuário são desenhadas em um canvas sobreposto à interface, mas os elementos subjacentes permanecem clicáveis e interativos com o mouse, garantindo uma experiência de usuário fluida e sem bloqueios.
+*   **Otimização de Eventos:** Para evitar disparos excessivos e garantir uma interação suave, o sistema implementa mecanismos de *debounce* e *throttle* para os eventos de scroll (200 ms) e clique (300 ms).
+*   **Feedback Visual:** O aplicativo fornece feedback visual em tempo real, desenhando as mãos detectadas e os *landmarks* na tela, além de exibir emojis correspondentes aos gestos reconhecidos.
 
-## Checklist Features
-- Titles List
-  - [] - Campo para pesquisa não deve travar ao digitar termo de pesquisa
-  - [] - Deve desenhar mãos na tela e fazer com que elementos em segundo plano  continuem sendo clicáveis  🙌
-  - [] - Deve disparar scroll up quando usar a palma das mãos abertas 🖐
-  - [] - Deve disparar scroll down quando usar a palma das mãos fechadas ✊
-  - [] - Deve disparar click no elemento mais próximo quando usar  gesto de pinça 🤏🏻
-  - [] - Ao mover elementos na tela, deve disparar evento **:hover** em elementos em contexto
+## Arquitetura e Tecnologias Utilizadas
 
-- Video Player
-  - [] - Deve ser possivel de reproduzir ou pausar videos com o piscar de olhos 😁
-  - [] - Todo processamento de Machine Learning deve ser feito via Web worker
+O projeto é construído sobre uma base de tecnologias web modernas, com foco em performance e interatividade:
 
-### Desafios
-- [] - Aula 01 - Diferenciar piscada de olhos entre olho direito e esquerdo e atualizar log para mostrar qual olho que piscou.
-- [] - Aula 02 - Reconhecer gestos de mãos individuais e printar no log
-- [] - Aula 03 - A definir
-- [] - Aula 04 - A definir
+*   **Linguagem:** JavaScript (ESM)
+*   **Ambiente de Execução:** Node.js
+*   **Servidor de Desenvolvimento:** `browser-sync` (com opção de `http-server` para Windows)
+*   **Machine Learning e Visão Computacional:**
+    *   `fingerpose`: Biblioteca para reconhecimento de gestos de mão.
+    *   `@tensorflow/tfjs-core` e `@tensorflow/tfjs-backend-webgl`: Core do TensorFlow.js e backend para aceleração via GPU.
+*   **Estrutura:** Arquitetura modular com separação de responsabilidades (Controllers, Services, Views, Factories) para facilitar a manutenção e escalabilidade.
+*   **Otimização:** Utilização de *Web Workers* para processamento assíncrono de tarefas de ML, garantindo a fluidez da interface.
 
-### Links mostrados nos aulas:
-- Reuni todos os links em [referências](./referencias.md)
-### Considerações
-- Tire suas dúvidas sobre os desafios em nossa comunidade, o objetivo é você aprender de forma divertida. Surgiu dúvidas? Pergunte por lá!
+## Como Executar o Projeto
 
-- Ao completar qualquer um dos desafios, envie no canal **#desafios** da comunidade no **Discord**
-### FAQ
-- browser-sync está lançando erros no Windows e nunca inicializa:
-  - Solução: Trocar o browser-sync pelo http-server.
-    1. instale o **http-server**  com `npm i -D http-server`
-    2. no package.json apague todo o comando do `browser-sync` e substitua por `npx http-server .`
-    3. agora o projeto vai estar executando na :8080 então vá no navegador e tente acessar o http://localhost:8080/
-  A unica coisa, é que o projeto não vai reiniciar quando voce alterar algum código, vai precisar dar um F5 na página toda vez que alterar algo
+Para configurar e executar o projeto localmente, siga os passos abaixo:
 
-### Créditos ao Layout
-- Interface baseada no projeto [Streaming Service](https://codepen.io/Gunnarhawk/pen/vYJEwoM) de [gunnarhawk](https://github.com/Gunnarhawk)
+### Pré-requisitos
+
+*   Node.js (versão v19.6 ou superior recomendada).
+*   Ambiente Unix-like (Linux ou WSL no Windows) é preferível devido aos comandos utilizados nas aulas.
+
+### Instalação e Execução
+
+1.  **Navegue até o diretório da aula:**
+    ```bash
+    cd expert07-imersao/classes/class02
+    ```
+2.  **Instale as dependências:**
+    ```bash
+    npm ci
+    ```
+3.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm start
+    ```
+4.  **Acesse no navegador:** Abra seu navegador e navegue para `http://localhost:3000`.
+
+### Solução de Problemas (Windows)
+
+Se `browser-sync` apresentar erros no Windows, você pode substituí-lo por `http-server`:
+
+1.  **Instale `http-server`:**
+    ```bash
+    npm i -D http-server
+    ```
+2.  **Edite o `package.json`:** Substitua o comando `start` por:
+    ```json
+    "start": "npx http-server ."
+    ```
+3.  **Acesse no navegador:** O projeto estará disponível em `http://localhost:8080`.
+    *Nota: Com `http-server`, as alterações no código exigirão um recarregamento manual da página (F5).* 
+
+## Créditos
+
+*   **Desenvolvedor:** Tiago Almeida
+*   **Tutoria:** Imersão Semana JS Expert 7.0 (Professor Erick Wendel)
+*   **Layout Base:** Interface inspirada no projeto [Streaming Service](https://codepen.io/Gunnarhawk/pen/vYJEwoM) de [gunnarhawk](https://github.com/Gunnarhawk).
+
+## Referências
+
+Para uma lista completa de links e recursos utilizados no desenvolvimento, consulte o arquivo [referencias.md](./referencias.md).
