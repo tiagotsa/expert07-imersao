@@ -5,7 +5,7 @@
 
 ## Visão Geral do Projeto
 
-
+https://expert07-imersaotn.vercel.app/pages/titles/
 
 O projeto **JSExpertMax Gesture Controller** é uma demonstração avançada de como a visão computacional e o Machine Learning podem ser aplicados em aplicações web para criar experiências de usuário inovadoras e acessíveis. Desenvolvido como parte da Semana Javascript Expert 7.0, este aplicativo explora o controle de navegação de uma lista de títulos através de gestos de mão.
 
