@@ -25,7 +25,7 @@ Esta seção do aplicativo permite aos usuários interagir com uma lista de cont
 
 # 🎥 Demonstração
 
-[![Assistir vídeo](https://github.com/tiagotsa/readme-assets/blob/main/gesture-controller/captura-gesto.PNG)](https://github.com/tiagotsa/readme-assets/blob/main/gesture-controller/captura-comportamento.mp4)
+[![Assistir vídeo](https://raw.githubusercontent.com/tiagotsa/readme-assets/main/gesture-controller/captura-gesto.PNG)](https://raw.githubusercontent.com/tiagotsa/readme-assets/main/gesture-controller/captura-comportamento.mp4)
 
 ## Arquitetura e Tecnologias Utilizadas
 
