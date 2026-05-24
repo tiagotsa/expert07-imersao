@@ -23,6 +23,11 @@ Esta seção do aplicativo permite aos usuários interagir com uma lista de cont
 *   **Otimização de Eventos:** Para evitar disparos excessivos e garantir uma interação suave, o sistema implementa mecanismos de *debounce* e *throttle* para os eventos de scroll (200 ms) e clique (300 ms).
 *   **Feedback Visual:** O aplicativo fornece feedback visual em tempo real, desenhando as mãos detectadas e os *landmarks* na tela, além de exibir emojis correspondentes aos gestos reconhecidos.
 
+# 🎥 Demonstração
+
+[Clique aqui para assistir ao vídeo](https://github.com/tiagotsa/readme-assets/tree/main/gesture-controller)
+
+
 ## Arquitetura e Tecnologias Utilizadas
 
 O projeto é construído sobre uma base de tecnologias web modernas, com foco em performance e interatividade:
